@@ -4,6 +4,7 @@ import pygame
 
 # Initialize Pygame
 pygame.init()
+pygame.mixer.init()
 
 # Constants
 WIDTH, HEIGHT = 600, 600
@@ -24,6 +25,10 @@ COLORS = [
 ]
 
 BACKGROUND_COLOR = (75, 70, 75)
+
+# Load sound effects
+swap_sound = pygame.mixer.Sound('resources/swap.mp3')
+match_sound = pygame.mixer.Sound('resources/match.mp3')
 
 # Set up the display
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
@@ -89,6 +94,7 @@ def propagate_items_from_up(col, row):
 
 
 def animate_swap(pos1, pos2):
+    swap_sound.play()
     x1, y1 = pos1[0] * TILE_SIZE, pos1[1] * TILE_SIZE
     x2, y2 = pos2[0] * TILE_SIZE, pos2[1] * TILE_SIZE
     dx, dy = (x2 - x1) // FPS, (y2 - y1) // FPS
@@ -171,6 +177,7 @@ def make_a_move(col, row, selected_tile):
 
 def handle_matches(matches):
     if matches:
+        match_sound.play()
         animate_removal(matches)
         remove_matches(matches)
         refill_grid()
