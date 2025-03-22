@@ -6,6 +6,9 @@ import pygame
 pygame.init()
 pygame.mixer.init()
 
+pygame.mixer.music.load('resources/background.mp3')
+pygame.mixer.music.play(-1)
+
 # Constants
 WIDTH, HEIGHT = 600, 600
 ROWS, COLS = 8, 8
