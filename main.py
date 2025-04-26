@@ -145,6 +145,8 @@ def main():
 
     while running:
         for event in pygame.event.get():
+            col = 0
+            row = 0
             handle_matches(find_matches())
             if hasattr(event, "pos"):
                 x, y = event.pos
